@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who, What, Where is God? — Wellington Meeting House, September 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      background: #ffffff;
+      color: #222222;
+      line-height: 1.5;
+    }
+
+    /* ─── PAGE WRAPPER ─── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2rem 2rem;
+    }
+
+    /* ─── TWO-COLUMN CONTENT LAYOUT ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.8rem;
+      align-items: stretch;
+    }
+
+    /* ─── LEFT COLUMN ─── */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .col-left .image-quote-box.grow {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .col-left .image-quote-box.grow img {
+      flex-grow: 1;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .page-title h1 {
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 26pt;
+      font-weight: normal;
+      line-height: 1.15;
+      color: #222222;
+    }
+
+    .event-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .event-title .date-venue,
+    .page-title .date-venue {
+      font-size: 20pt;
+      line-height: 1.4;
+      margin-top: 0.3rem;
+    }
+
+    .image-frame {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+
+    .facilitated-by {
+      text-align: center;
+      font-size: 11pt;
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .schedule-note {
+      font-family: 'Calibri Light', Calibri, 'Segoe UI', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 10.5pt;
+      margin-top: 0.8rem;
+      color: #222222;
+    }
+
+    .queries-note {
+      font-family: 'Calibri Light', Calibri, 'Segoe UI', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 10.5pt;
+      text-align: center;
+      margin-top: 0.5rem;
+      color: #222222;
+    }
+
+    .image-quote-box {
+      border: 1px solid #aeaaaa;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.25);
+      padding: 0;
+      margin: 0;
+    }
+    .image-quote-box .astronaut-quote {
+      padding: 0.8rem 1rem 0.7rem;
+      margin: 0;
+    }
+
+    .astronaut-quote {
+      font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', Georgia, serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: #222222;
+      margin: 0.6rem 0;
+      line-height: 1.5;
+    }
+    .astronaut-quote cite {
+      display: block;
+      font-style: normal;
+      font-size: 12pt;
+      margin-top: 0.4rem;
+    }
+
+    /* ─── RIGHT COLUMN ─── */
+    .col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .col-right .content-body {
+      flex-grow: 1;
+    }
+
+    .content-heading {
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 14pt;
+      font-weight: bold;
+      text-align: center;
+      color: #222222;
+      margin-bottom: 0.8rem;
+    }
+
+    .content-body p {
+      font-size: 11pt;
+      margin-bottom: 0.7rem;
+      color: #222222;
+    }
+
+    .content-body p strong {
+      font-weight: bold;
+    }
+
+    /* ─── DIVIDER ─── */
+    hr {
+      border: none;
+      border-top: 1px solid #cccccc;
+      margin: 2.5rem 0;
+    }
+
+    /* ─── REGISTRATION FORM (full-width, separate section) ─── */
+    .registration-section {
+      border-top: 2px solid #222222;
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .reg-title {
+      font-family: Arial, Calibri, 'Segoe UI', sans-serif;
+      font-size: 11pt;
+      font-weight: bold;
+      text-align: center;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
+    }
+
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .reg-field {
+      font-size: 11pt;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #222222;
+    }
+
+    .reg-section-label {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .reg-option {
+      font-size: 11pt;
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      position: relative;
+    }
+    .reg-option::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+    }
+
+    .reg-option.red {
+      color: #EE0000;
+    }
+    .reg-option.red::before {
+      color: #EE0000;
+    }
+
+    .reg-inline-options {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .meals-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11pt;
+      margin: 0.5rem 0;
+    }
+    .meals-table td {
+      padding: 0.2rem 0.4rem;
+    }
+    .meals-table td:last-child {
+      text-align: right;
+      padding-right: 2rem;
+    }
+    .meals-table tr.total td {
+      font-weight: bold;
+      border-top: 1px solid #222222;
+      padding-top: 0.4rem;
+    }
+
+    .reg-footer {
+      margin-top: 1.2rem;
+      font-size: 11pt;
+      line-height: 1.7;
+    }
+
+    .reg-footer a {
+      color: #000080;
+    }
+
+    .payment-info {
+      margin-top: 1rem;
+      font-size: 11pt;
+    }
+
+    .deadline {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── FORM INPUTS ─── */
+    .reg-input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem 2rem;
+      margin-bottom: 0.8rem;
+    }
+    .reg-input-group {
+      display: flex;
+      align-items: baseline;
+      border-bottom: 1px solid #222222;
+      padding-bottom: 0.15rem;
+    }
+    .reg-input-group.full { grid-column: 1 / -1; }
+    .reg-input-group label {
+      font-size: 11pt;
+      font-weight: normal;
+      white-space: nowrap;
+      margin-right: 0.4rem;
+      flex-shrink: 0;
+    }
+    .reg-input-group input[type="text"],
+    .reg-input-group input[type="email"],
+    .reg-input-group input[type="tel"] {
+      border: none;
+      outline: none;
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #222222;
+      background: transparent;
+      width: 100%;
+      padding: 0.1rem 0;
+    }
+
+    .reg-radio-group {
+      display: flex;
+      gap: 2.5rem;
+      margin: 0.3rem 0 0.6rem 0;
+    }
+    .reg-radio-group label {
+      font-size: 11pt;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+    .reg-radio-group input[type="radio"] {
+      accent-color: #222222;
+    }
+
+    .reg-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin: 0.3rem 0 0.6rem 0;
+    }
+    .reg-check-group label {
+      font-size: 11pt;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .reg-check-group label.red { color: #EE0000; }
+    .reg-check-group input[type="checkbox"] {
+      margin-top: 0.2rem;
+      accent-color: #222222;
+      flex-shrink: 0;
+    }
+    .reg-check-group label.red input[type="checkbox"] {
+      accent-color: #EE0000;
+    }
+
+    .reg-special-needs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      font-size: 11pt;
+    }
+    .reg-special-needs input[type="text"] {
+      border: none;
+      border-bottom: 1px solid #222222;
+      outline: none;
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #222222;
+      background: transparent;
+      width: 220px;
+      padding: 0.1rem 0;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      margin-top: 1.4rem;
+      padding: 0.55rem 2rem;
+      background: #222222;
+      color: #ffffff;
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .submit-btn:hover { background: #444444; }
+
+    .form-success {
+      display: none;
+      margin-top: 1rem;
+      font-size: 11pt;
+      color: #226622;
+      font-weight: bold;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 680px) {
+      .two-col { grid-template-columns: 1fr; }
+      .reg-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PAGE TITLE -->
+  <div class="page-title">
+    <h1>Who, What, Where is God?</h1>
+    <div class="date-venue">
+      11 to 13 September 2026<br>
+      Wellington Meeting House
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT: left = image/visual, right = text content -->
+  <div class="two-col">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-left">
+
+      <div class="image-quote-box grow">
+        <img class="image-frame" src="image3.jpeg" alt="Seeing Earth from space — connected to all living things">
+        <blockquote class="astronaut-quote">
+          &ldquo;Seeing Earth from space made me feel connected to all living things on our planet.&rdquo;
+          <cite>Mike Massimino, Astronaut</cite>
+        </blockquote>
+      </div>
+
+      <div class="image-quote-box" style="padding: 0.8rem 1rem;">
+        <div class="facilitated-by" style="margin:0;">
+          Facilitated by Murray Short &amp; Janet Keane
+        </div>
+      </div>
+
+      <div class="image-quote-box" style="padding: 0.8rem 1rem;">
+        <p class="schedule-note" style="margin:0;">
+          Commencing with dinner on Friday at 6.30pm and ending with Sunday Meeting for Worship
+        </p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-right">
+
+      <div class="content-body">
+        <p>How we think about the spiritual dimension of human experience matters. As <strong>Ilia Delio</strong> has suggested, <em>'The way we understand God, ourselves, and our relationship to the natural world shapes every aspect of how we live and act.'</em></p>
+
+        <p>Join us in exploring different ways of thinking about spirituality and religion and how they can shape the way we live and act. Presenters will share their perspectives, from supernatural theism to panentheism and non-theism, and each will provide opportunities for group discussion.</p>
+
+        <p>The presenters will be <strong>Adrian Skelton, Janet Keane, Mark Crozier, Murray Short and Trish McBride.</strong></p>
+
+        <p>Options of online or in-person participation are available. Those who are joining online are encouraged to do so in the company of others in their worship group so they can have in-person sharing and discussion.</p>
+
+        <p>In-person participants need to make their own arrangements and payment for accommodation. Billets and two other options are identified on the registration form. Numbers are limited and there are motels nearby.</p>
+      </div>
+
+      <div class="image-quote-box" style="padding: 0.8rem 1rem;">
+        <p class="queries-note" style="margin:0;">
+          Send any queries on the programme to <a href="mailto:mandns@xtra.co.nz">mandns@xtra.co.nz</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REGISTRATION FORM (full-width, separate section) -->
+  <div class="registration-section">
+
+    <p class="reg-title">Registration Form</p>
+
+    <form action="https://formspree.io/f/mbdeakzz" method="POST" id="reg-form">
+
+      <!-- Formspree spam protection -->
+      <input type="hidden" name="_subject" value="Seminar Registration">
+      <input type="text" name="_gotcha" style="display:none">
+
+      <div class="reg-input-row">
+        <div class="reg-input-group">
+          <label for="name">Name(s):</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="reg-input-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+        <div class="reg-input-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+      </div>
+
+      <p class="reg-section-label">Participation:</p>
+      <div class="reg-radio-group">
+        <label><input type="radio" name="participation" value="Online"> Online</label>
+        <label><input type="radio" name="participation" value="In-person"> In-person</label>
+      </div>
+
+      <p class="reg-section-label">Accommodation</p>
+      <div class="reg-check-group">
+        <label>
+          <input type="checkbox" name="accommodation" value="self-arrange">
+          I will arrange &nbsp;(Home of Compassion $65–$100 per night, &nbsp;Haka House $69–$73 per night)
+        </label>
+        <label>
+          <input type="checkbox" name="accommodation" value="billet">
+          Billet (limited numbers &ndash; contact Marion Wade, &nbsp;<a href="mailto:mlwade@actrix.co.nz" style="color:#000000; font-weight:bold;">mlwade@actrix.co.nz</a>)
+        </label>
+      </div>
+
+      <p class="reg-section-label">Meals</p>
+      <p style="font-size:11pt; margin-bottom:0.4rem;">Simple vegetarian fare provided for Friday and Saturday dinner and Saturday lunch. Breakfast to be arranged at individual accommodation.</p>
+      <div class="reg-check-group">
+        <label><input type="checkbox" name="meals" value="Friday dinner ($8)"> Friday dinner &mdash; $8</label>
+        <label><input type="checkbox" name="meals" value="Saturday lunch ($25)"> Saturday lunch &mdash; $25</label>
+        <label><input type="checkbox" name="meals" value="Saturday dinner ($32)"> Saturday dinner &mdash; $32</label>
+        <label><input type="checkbox" name="meals" value="Refreshments ($10)"> Refreshments &mdash; $10</label>
+        <label><input type="checkbox" name="gluten_free" value="Yes"> Gluten free</label>
+      </div>
+
+      <div class="reg-special-needs">
+        <span>Other special needs:</span>
+        <input type="text" name="special_needs">
+      </div>
+
+      <p id="form-error" style="display:none; color:#7a0000; background:#fff0f0; font-size:10pt; font-weight:bold; padding:0.6rem 1rem; margin-top:1rem; border:1px solid #f5c0c0; box-shadow:3px 3px 8px rgba(0,0,0,0.2);"></p>
+      <button type="submit" class="submit-btn">Submit Registration</button>
+      <p class="form-success" id="form-success" style="display:none; color:#000000; background:#e8f5e9; font-size:10pt; font-weight:bold; padding:0.6rem 1rem; margin-top:1rem; border:1px solid #a5d6a7; box-shadow:3px 3px 8px rgba(0,0,0,0.2);">&#10003; Thank you — your registration has been sent!</p>
+
+    </form>
+
+    <div class="reg-footer">
+      <p>Or post this form to: Janet McKeane, c/o 7 Moncrieff Street, Wellington 6011.</p>
+    </div>
+
+    <div class="payment-info">
+      <p><strong>Payment:</strong><br>
+      Account name: Wellington Monthly Meeting Of The Religious Society Of Friends<br>
+      Account no: 38-9015-0775731-06</p>
+      <p class="deadline" style="color:#EE0000;">Please register by 31 August 2026.</p>
+    </div>
+
+  </div>
+
+  <script>
+    function showError(msg) {
+      const el = document.getElementById('form-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.getElementById('reg-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      document.getElementById('form-error').style.display = 'none';
+      const name = this.querySelector('input[name="name"]').value.trim();
+      const email = this.querySelector('input[name="email"]').value.trim();
+      const participation = this.querySelector('input[name="participation"]:checked');
+      if (!name) { showError('Please enter your name.'); return; }
+      if (!email) { showError('Please enter your email address.'); return; }
+      if (!participation) { showError('Please select Online or In-person.'); return; }
+      const f = this;
+      const checked = name => [...f.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
+      const meals = checked('meals');
+      const accommodation = checked('accommodation');
+      const payload = {
+        _subject:      'Seminar Registration',
+        name:          name,
+        email:         email,
+        phone:         f.querySelector('input[name="phone"]').value.trim() || 'Not provided',
+        participation: participation.value,
+        accommodation: accommodation.length ? accommodation.join(', ') : 'None selected',
+        meals:         meals.length ? meals.join(', ') : 'None selected',
+        gluten_free:   f.querySelector('input[name="gluten_free"]').checked ? 'Yes' : 'No',
+        special_needs: f.querySelector('input[name="special_needs"]').value.trim() || 'None',
+      };
+      const btn = this.querySelector('.submit-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      const res = await fetch('https://formspree.io/f/mbdeakzz', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        this.reset();
+        btn.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Submit Registration';
+        btn.disabled = false;
+        alert('Submission failed — please try again or email janetmckean1088@gmail.com directly.');
+      }
+    });
+  </script>
+
+</div>
+</body>
+</html>
