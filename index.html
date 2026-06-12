@@ -551,7 +551,7 @@
       const meals = checked('meals');
       const accommodation = checked('accommodation');
       const payload = {
-        _subject:      'Seminar Registration',
+        _subject:      (() => { const now = new Date(); return 'Registration ' + now.getDate() + ' ' + now.toLocaleString('en-NZ', {month:'long'}) + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0'); })(),
         name:          name,
         email:         email,
         phone:         f.querySelector('input[name="phone"]').value.trim() || 'Not provided',
