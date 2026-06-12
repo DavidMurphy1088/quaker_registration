@@ -574,9 +574,10 @@
         btn.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
       } else {
+        const errData = await res.json().catch(() => ({}));
         btn.textContent = 'Submit Registration';
         btn.disabled = false;
-        alert('Submission failed — please try again or email janetmckean1088@gmail.com directly.');
+        alert('Submission failed (status ' + res.status + '): ' + (errData.error || JSON.stringify(errData)) + '\n\nPlease email janetmckean1088@gmail.com directly.');
       }
     });
   </script>
