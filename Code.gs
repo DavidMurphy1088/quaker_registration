@@ -91,3 +91,13 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
+
+// Run this once from the editor to grant MailApp permission:
+// select testEmail from the dropdown and click Run
+function testEmail() {
+  MailApp.sendEmail({
+    to:      'quakerregistration6@gmail.com',
+    subject: 'Apps Script authorisation test',
+    body:    'If you received this, MailApp is authorised and forwarding is working.',
+  });
+}
