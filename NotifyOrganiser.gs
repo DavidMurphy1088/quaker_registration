@@ -42,7 +42,7 @@ function doPost(e) {
 function testEmail() {
   MailApp.sendEmail({
     to:      'janetmckean1088@gmail.com',
-    subject: 'Organiser notification test',
-    body:    'If Janet received this in her inbox, everything is working correctly.',
+    subject: 'Organiser notification test — Who, What, Where is God?',
+    body:    'If Janet received this in her inbox, David\'s notification script is working correctly.',
   });
 }
