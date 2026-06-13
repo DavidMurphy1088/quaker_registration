@@ -41,7 +41,15 @@ function doPost(e) {
         + selectedMeals.map(m => `  ${m}`).join('\n')
         + `\n  ──────────────\n  Total: $${total}\n\n`
         + 'Please include this amount in your payment.\n\n'
+        + 'Payment details:\n'
+        + '  Account name:   Wellington Monthly Meeting Of The Religious Society Of Friends\n'
+        + '  Account number: 38-9015-0775731-06\n'
+        + '  Reference:      Your name\n\n'
       : 'You have not selected any meals.\n\n';
+
+    const specialNeedsSection = data.special_needs && data.special_needs !== 'None'
+      ? 'Special requirements noted: ' + data.special_needs + '\n\n'
+      : '';
 
     // Confirmation email to registrant
     MailApp.sendEmail({
@@ -52,10 +60,7 @@ function doPost(e) {
         + 'Thank you for registering for our seminar "Who, What, Where is God?" '
         + 'at Wellington Meeting House, 11–13 September 2026. We look forward to seeing you there.\n\n'
         + mealsSection
-        + 'Payment details:\n'
-        + '  Account name:   Wellington Monthly Meeting Of The Religious Society Of Friends\n'
-        + '  Account number: 38-9015-0775731-06\n'
-        + '  Reference:      Your name\n\n'
+        + specialNeedsSection
         + 'If you have any questions, please contact Murray at mandns@xtra.co.nz.\n\n'
         + 'Warm regards,\n'
         + 'Murray Short & Janet McKean',
