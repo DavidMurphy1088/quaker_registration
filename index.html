@@ -455,10 +455,9 @@
 
     <p class="reg-title">Registration Form</p>
 
-    <form action="https://formspree.io/f/mlgkpagk" method="POST" id="reg-form">
+    <form id="reg-form">
 
-      <!-- Formspree spam protection -->
-      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="google_sheet" value="▶️ This registration was also added to the Quaker registration Google sheet">
 
       <div class="reg-input-row">
         <div class="reg-input-group">
@@ -485,7 +484,7 @@
       <div class="reg-check-group">
         <label>
           <input type="checkbox" name="accommodation" value="self-arrange">
-          I will arrange &nbsp;(Home of Compassion $65–$100 per night, &nbsp;Haka House $69–$73 per night)
+          I will arrange myself &nbsp;(Home of Compassion $65–$100 per night, &nbsp;Haka House $69–$73 per night)
         </label>
         <label>
           <input type="checkbox" name="accommodation" value="billet">
@@ -529,6 +528,10 @@
   </div>
 
   <script>
+    // ── PASTE YOUR APPS SCRIPT DEPLOYMENT URL HERE ──────────────────────────
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_Cn-GBfFOI4-cwFJX8qyRm8DayC2nMY3Bdu0CsE_37Z6kYmWkF3IlafouBCuFynJ4/exec';
+    // ────────────────────────────────────────────────────────────────────────
+
     function showError(msg) {
       const el = document.getElementById('form-error');
       el.textContent = msg;
@@ -542,15 +545,17 @@
       const name = this.querySelector('input[name="name"]').value.trim();
       const email = this.querySelector('input[name="email"]').value.trim();
       const participation = this.querySelector('input[name="participation"]:checked');
-      if (!name) { showError('Please enter your name.'); return; }
-      if (!email) { showError('Please enter your email address.'); return; }
+      if (!name)          { showError('Please enter your name.'); return; }
+      if (!email)         { showError('Please enter your email address.'); return; }
       if (!participation) { showError('Please select Online or In-person.'); return; }
       const f = this;
       const checked = name => [...f.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
       const meals = checked('meals');
       const accommodation = checked('accommodation');
+      const now = new Date();
+      const specialNeeds = f.querySelector('input[name="special_needs"]').value.trim() || 'None';
       const payload = {
-        _subject:      (() => { const now = new Date(); return 'Seminar Registration, ' + now.getDate() + ' ' + now.toLocaleString('en-NZ', {month:'long'}) + ' - ' + name; })(),
+        _subject:      'Seminar Registration, ' + now.getDate() + ' ' + now.toLocaleString('en-NZ', {month:'long'}) + ' - ' + name,
         name:          name,
         email:         email,
         phone:         f.querySelector('input[name="phone"]').value.trim() || 'Not provided',
@@ -558,24 +563,40 @@
         accommodation: accommodation.length ? accommodation.join(', ') : 'None selected',
         meals:         meals.length ? meals.join(', ') : 'None selected',
         gluten_free:   f.querySelector('input[name="gluten_free"]').checked ? 'Yes' : 'No',
-        special_needs: f.querySelector('input[name="special_needs"]').value.trim() || 'None',
+        special_needs: specialNeeds,
       };
       const btn = this.querySelector('.submit-btn');
       btn.textContent = 'Sending…';
       btn.disabled = true;
-      const res = await fetch('https://formspree.io/f/mlgkpagk', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (res.ok) {
+      try {
+        // Step 1: send email via Formspree and confirm success
+        const formspreePayload = { ...payload,
+          special_needs: specialNeeds + '\n\n▶️ This registration was also added to the Quaker registration Google sheet',
+        };
+        const emailRes = await fetch('https://formspree.io/f/mlgkpagk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(formspreePayload)
+        });
+        if (!emailRes.ok) throw new Error('Email failed');
+
+        // Step 2: email confirmed — now write to Google Sheet
+        console.log('Sending to Apps Script:', APPS_SCRIPT_URL);
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        }).then(() => console.log('Apps Script fetch completed'))
+          .catch(err => console.error('Apps Script fetch error:', err));
+
         this.reset();
         btn.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
-      } else {
+      } catch (err) {
         btn.textContent = 'Submit Registration';
         btn.disabled = false;
-        alert('Submission failed — please try again or email janetmckean1088@gmail.com directly.');
+        showError('Submission failed — please try again or email janetmckean1088@gmail.com directly.');
       }
     });
   </script>
