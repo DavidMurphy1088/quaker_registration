@@ -61,26 +61,6 @@ function doPost(e) {
         + 'Murray Short & Janet McKean',
     });
 
-    // Notification email to organiser
-    const day   = Utilities.formatDate(now, Session.getScriptTimeZone(), 'd');
-    const month = Utilities.formatDate(now, Session.getScriptTimeZone(), 'MMMM');
-    const time  = Utilities.formatDate(now, Session.getScriptTimeZone(), 'HH:mm');
-    MailApp.sendEmail({
-      to:      'quakerregistration6@gmail.com',
-      subject: 'Seminar Registration, ' + day + ' ' + month + ' ' + time + ' — ' + (data.name || ''),
-      body:
-        'New registration received ' + day + ' ' + month + ' at ' + time + '\n\n'
-        + 'Name:          ' + (data.name          || '') + '\n'
-        + 'Email:         ' + (data.email         || '') + '\n'
-        + 'Phone:         ' + (data.phone         || '') + '\n'
-        + 'Participation: ' + (data.participation || '') + '\n'
-        + 'Accommodation: ' + (data.accommodation || '') + '\n'
-        + 'Meals:         ' + (data.meals         || '') + '\n'
-        + 'Gluten free:   ' + (data.gluten_free   || '') + '\n'
-        + 'Special needs: ' + (data.special_needs || '') + '\n\n'
-        + '▶️ Added to the Google Sheet.',
-    });
-
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
       .setMimeType(ContentService.MimeType.JSON);
