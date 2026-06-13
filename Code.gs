@@ -66,7 +66,7 @@ function doPost(e) {
     const month = Utilities.formatDate(now, Session.getScriptTimeZone(), 'MMMM');
     const time  = Utilities.formatDate(now, Session.getScriptTimeZone(), 'HH:mm');
     MailApp.sendEmail({
-      to:      'janetmckean1088@gmail.com',
+      to:      'quakerregistration6@gmail.com',
       subject: 'Seminar Registration, ' + day + ' ' + month + ' ' + time + ' — ' + (data.name || ''),
       body:
         'New registration received ' + day + ' ' + month + ' at ' + time + '\n\n'
