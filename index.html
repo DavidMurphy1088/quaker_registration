@@ -526,9 +526,10 @@
   </div>
 
   <script>
-    // ── PASTE YOUR APPS SCRIPT DEPLOYMENT URL HERE ──────────────────────────
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDQhvdK6yFEGwY9qdOYSz6tu2s6CuDmFvSbKK2NUwHISlWIOWpk-g6HJo1WEGZbc_82g/exec';
-    // ────────────────────────────────────────────────────────────────────────
+    // Janet's script: updates sheet + sends registrant confirmation
+    const APPS_SCRIPT_URL     = 'https://script.google.com/macros/s/AKfycbxDQhvdK6yFEGwY9qdOYSz6tu2s6CuDmFvSbKK2NUwHISlWIOWpk-g6HJo1WEGZbc_82g/exec';
+    // David's script: sends organiser notification to Janet
+    const NOTIFY_ORGANISER_URL = 'https://script.google.com/macros/s/AKfycbyz9nhl61xhKkKZLVcCfJIVvWVU8N0mL69qg3qFQg55nxNByogDIq38ZT7InHwFB5Rd3w/exec';
 
     function showError(msg) {
       const el = document.getElementById('form-error');
@@ -568,6 +569,12 @@
       btn.disabled = true;
       try {
         await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        });
+        fetch(NOTIFY_ORGANISER_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
