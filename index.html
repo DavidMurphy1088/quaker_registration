@@ -457,8 +457,6 @@
 
     <form id="reg-form">
 
-      <input type="hidden" name="google_sheet" value="▶️ This registration was also added to the Quaker registration Google sheet">
-
       <div class="reg-input-row">
         <div class="reg-input-group">
           <label for="name">Name(s):</label>
@@ -569,27 +567,12 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
       try {
-        // Step 1: send email via Formspree and confirm success
-        const formspreePayload = { ...payload,
-          special_needs: specialNeeds + '\n\n▶️ This registration was also added to the Quaker registration Google sheet',
-        };
-        const emailRes = await fetch('https://formspree.io/f/mlgkpagk', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(formspreePayload)
-        });
-        if (!emailRes.ok) throw new Error('Email failed');
-
-        // Step 2: email confirmed — now write to Google Sheet
-        console.log('Sending to Apps Script:', APPS_SCRIPT_URL);
-        fetch(APPS_SCRIPT_URL, {
+        await fetch(APPS_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload)
-        }).then(() => console.log('Apps Script fetch completed'))
-          .catch(err => console.error('Apps Script fetch error:', err));
-
+        });
         this.reset();
         btn.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
